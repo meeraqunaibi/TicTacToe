@@ -18,14 +18,15 @@ const Board = (props) => {
     let result = evaluate(newCells);
     if (result) {
       setWinner(result);
+
       if (result === "X") {
-        props.setPoints((points) => {
-          return { ...points, xPoint: points.xPoint + 1 };
-        });
+        let newPoints = { ...props.points, xPoint: props.points.xPoint + 1 };
+        props.setPoints(newPoints);
+        localStorage.setItem("points", JSON.stringify(newPoints));
       } else if (result === "O") {
-        props.setPoints((points) => {
-          return { ...points, oPoint: points.oPoint + 1 };
-        });
+        let newPoints = { ...props.points, oPoint: props.points.oPoint + 1 };
+        props.setPoints(newPoints);
+        localStorage.setItem("points", JSON.stringify(newPoints));
       }
     }
   };
